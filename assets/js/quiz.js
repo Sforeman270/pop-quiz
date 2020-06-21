@@ -5,18 +5,6 @@ var scoreContainer = document.getElementById("scoreContainer");
 var lastQuestionIndex = questions.length -1;
 var runningQuestionIndex = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
 var quizQuestions = [
     {
         question: "What is the event called when it is used to trigger a function when an element is clicked on?",
@@ -45,13 +33,22 @@ var quizQuestions = [
         answer: "a",
     },
 
-        
+    
+    
 
+  function startQuiz() {
+      addEventListener.("click" ,start);
+      CounterRender();
+      Timer = setInterval(CounterRender, 1000);
+      renderQuestion();
+      quiz.style.display = list-item
+  }  
 
+// question appears across screen
 function renderQuestion(questionArray) {
   for (var i = 0; i< questionArray.length; i++) {
    
-    quizQuestions[i].question);
+    quizQuestions[i].question)
     
     quizQuestions[i].choices);
   };
@@ -86,3 +83,22 @@ function CounterRender() {
         
     
 }
+// Timer penalty if get right or wrong
+function checkAnswer(answer) {
+    if (questionArray[runningQuestionIndex].correct == answer) {
+        count--;
+} else {
+    answerIsWrong();
+    (count--)-10;
+
+    }
+}
+},
+function renderScore() {
+
+}
+
+start.addEventListener("click", startQuiz);
+
+
+

@@ -1,56 +1,125 @@
 
+
+
 * {
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
-    color: #000;
-    background-color: deepskyblue;
+    
 }
 
 .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: deepskyblue;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f8f8ff;
+    
 }
 h1 {
     font-size: 4rem;
-    font-weight: bolder;
+    font-weight: bold;
     text-align: center;
+    justify-content: center;
     margin-bottom: 1rem;
 }
 
-/* Utilities */
-.container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 80rem;
-    margin: 0 ,auto
-}
-
-
-/* Button Code */
-.btn {
-    ;
+.welcome-form input, .welcome-form button {
     display: block;
-    width: 300px;
-    height: 50px;
-    text-align: center;
-    align-items: center;
-    background-color: floralwhite;
-
-    
-    
-
-
-    
+    width: 100%;
 }
+.welcome-form input {
+    background-color: transparent;
+    color: #ffff;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #f8f8ff;
+    margin-bottom: 15px;
+}
+
+
+.welcome-form button {
+    padding: 20px 0;
+    border:  none;
+    background-color: #1591ce;
+    font-size: 2rem;
+    transition: 0.5s all;
+}
+
+.page-title {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 10 0 10 rgba(21,145,206, .76);
+    z-index: 1;
+}
+
+p {
+    display: inline-block;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.quiz {
+    display: grid;
+    grid-template-rows: 60px auto;
+    width: 800px;
+    height: 500px;
+    background-color: blue;
+    box-shadow: 0 10px 0 10px rgba(21,145,206, .76);
+    z-index: 1;
+}
+
+.quiz-body {
+    padding: 30px;
+}
+
+.student {
+    display: flex;
+    align-items: center;
+    height: 100%;
+/* possible padding needed here */
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100px;
+    background-color: #1591ce;
+
+}
+    
+.choices {
+    display: block;
+    width: 200px;
+    background-color: #ffff;
+    margin-bottom: auto;
+    padding: 15px 20px;
+    border-radius: 100px;
+    border: 3px solid transparent;
+
+}
+.questions {
+    list-style-type: none;
+    margin: 30px 0;
+}
+    
+
+.username, .userscrore {
+    color: #f8f8ff;
+    text-align: center;
+    margin-top: 20px;
+}
+    
+    
+
+
+    
+
 
    
 
