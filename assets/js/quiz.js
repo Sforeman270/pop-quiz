@@ -52,8 +52,8 @@ function submitForm(event) {
 let question_count = 0;
 
 function next() {
-  if (question_count === question.length - 1) {
-    location.href = "../3index.html";
+  if (question_count === questions.length - 1) {
+    location.href = "./3index.html";
     return;
   }
   let user_answer = document.querySelector("li.option.active").innerHTML;
@@ -102,9 +102,9 @@ function toggleActive() {
   };
 };
 
-startBtn.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const timeLeftDisplay = document.querySelector('#time-left');
-  const startBtn = document.querySelector('#start-button');
+  let startBtn = document.querySelector('#start-button');
   timeLeft = 60;
 
 })
@@ -120,15 +120,14 @@ function countDown() {
 
 };
  
+
+startBtn.addEventListener("submit", countDown)
+
 let user_name = sessionStorage.getItem("name");
 let time = sessionStorage.getItem("time");
 document.querySelector("name").innerHTML = 'name';
 document.querySelector("time").innerHTML = 'time';
 
-
-
-
-startBtn.addEventListener("submit", countDown)
 
 
 
