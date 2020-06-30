@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <title>Code Quiz</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="quiz">
+            <div class="quiz_header">
+                <div class="quiz_user">
+                    <h4>Welcome! <span class="name"></span></h4>
+                </div>
+
+                <div class="quiz_timer" id="start-button">
+                    <p class="quiz_timer" onsubmit="submitForm(event)"><span id="time-left">60</span></p>
+                </div>
+            </div>
+        
+        <div class="quiz_body">
+            <div class id="questions">
+
+        </div>
+                <button class="btn-next" onclick="next()">Next Question</button>
+            
+            </div>
+        
+        <script src="assets/js/quiz.js"></script>
+</body>
+
+</html>
