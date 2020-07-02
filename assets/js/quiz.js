@@ -1,7 +1,13 @@
+let name = sessionStorage.getItem("name");
+// let time = sessionStorage.getItem("time");
 
-window.onload = function () {
-  show(0);
-}
+document.querySelector(".name").innerHTML = name;
+// document.querySelector(".time").innerHTML = time;
+
+
+window.onload = function() {
+  show(question_count);
+};
 
 
 let questions = [
@@ -52,17 +58,24 @@ function submitForm(event) {
 let question_count = 0;
 
 function next() {
-  if (question_count === questions.length - 1) {
-    location.href = "./3index.html";
-    return;
-  }
+
   let user_answer = document.querySelector("li.option.active").innerHTML;
 
-  if (user_answer === questions[question_count].answer) {
-    timeLeft++;
+  if(question_count === questions.length - 1) {
+    sessionStorage.setItem("time", time);
+    clearInterval(user_time);
+    location.href = "./3index.html";
+    return;
+  };
+  
+
+  if(user_answer == questions[question_count].answer) {
+    user_time = time--;
   } else {
-    timeLeft = timeLeft - 15;
-    sessionStorage.setItem("time-left", time - left);
+    user_time = time-- -15;
+    sessionStorage.setItem("time", time);
+
+
   }
   question_count++;
   show(question_count);
@@ -95,46 +108,28 @@ function toggleActive() {
       for (let i = 0; i < option.length; i++) {
         if (option[i].classList.contains("active")) {
           option[i].classList.remove("active");
-        };
-      };
-      option[i].classList.add("active");
+        }
+      }
+       option[i].classList.add("active");
     };
   };
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const timeLeftDisplay = document.querySelector('#time-left');
-  let startBtn = document.querySelector('#start-button');
-  timeLeft = 60;
+let dt = new Date(new Date().setTime(0));
+let time = dt.getTime();
+let seconds = Math.floor((time % (100 * 60 ))/ 1000);
 
-})
+let timex = 0;
+setInterval(function() {
+  if(seconds <59) {
+    seconds--;
+  }
+ time--;
+ console.log(seconds)
+ document.querySelector(".time").innerHTML = `$(seconds)`;
+}, 1000)
 
-function countDown() {
-  setInterval(function () {
-    if (timeLeft <= 0) {
-      clearInterval(timeLeft = 0)
-    }
-    timeLeftDisplay.innerHTML = timeLeft
-    timeLeft -= 1
-  }, 1000)
-
-};
  
-
-startBtn.addEventListener("submit", countDown)
-
-let user_name = sessionStorage.getItem("name");
-let time = sessionStorage.getItem("time");
-document.querySelector("name").innerHTML = 'name';
-document.querySelector("time").innerHTML = 'time';
-
-
-
-
-
-
-
-
 
 
 
