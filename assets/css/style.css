@@ -165,7 +165,7 @@ p {
     
 } 
 
-.username, .userscore, .user_time {
+.username, .userscore, .user_time , .user_points {
     color: #f8f8ff;
     text-align: center;
     margin-top: 20px;

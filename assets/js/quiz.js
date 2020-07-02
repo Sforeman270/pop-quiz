@@ -4,6 +4,8 @@ window.onload = function() {
   show(question_count);
 };
 
+let time = 60;
+
 
 let questions = [
   {
@@ -43,33 +45,39 @@ function submitForm(event) {
   event.preventDefault();
   let name = document.forms["welcome_form"]["name"].value;
 
-  sessionStorage.setItem("name", name);
+  localStorage.setItem("name", name);
 
   location.href = "./2index.html";
+console.log("im here")
 
+  startTime();
 };
 
 
+
 let question_count = 0;
+let point = 0;
 
 function next() {
 
   let user_answer = document.querySelector("li.option.active").innerHTML;
 
-  if(question_count === questions.length - 1) {
-    sessionStorage.setItem("time", time);
-    clearInterval(user_time);
-    location.href = "3index.html";
-    return;
+
+
+  if(user_answer === questions[question_count].answer) {
+
+    point = point + 10;
+  
+    
+  } else {
+    time -= 15;
+    
+  ;
+
+  if(question_count === questions.length - 1 ) {
+    endGame();
   };
   
-
-  if(user_answer == questions[question_count].answer) {
-    user_time = time--;
-  } else {
-    user_time = time-- -15;
-    sessionStorage.setItem("time", time);
-
 
   }
   question_count++;
@@ -81,7 +89,7 @@ function show(count) {
   let question = document.getElementById("questions");
   let [a, b, c, d] = questions[count].options;
 
-  // question.innerHTML = "<h2>" + questions[count].question + "</h2>";
+   
 
   question.innerHTML = `
   <h2>Q${count + 1}. ${questions[count].question}</h2>
@@ -98,11 +106,14 @@ function show(count) {
 
 function toggleActive() {
   let option = document.querySelectorAll("li.option");
+
+
   for (let i = 0; i < option.length; i++) {
     option[i].onclick = function () {
-      for (let i = 0; i < option.length; i++) {
+      for (let  j=0; j< option.length; j++) {
         if (option[i].classList.contains("active")) {
-          option[i].classList.remove("active");
+          option[j].classList.remove("active");
+
         };
       };
        option[i].classList.add("active");
@@ -110,27 +121,27 @@ function toggleActive() {
   };
 };
 
-let dt = new Date(new Date().setTime(0));
-let ctime = dt.getTime
-let time = dt.getTime();
-let seconds = Math.floor((time % (100 * 60 ))/ 1000);
 
-let timex = 0;
-let user_time = setInterval(function() {
-  if(seconds <59) {
-    seconds--;
-  } else {
-    seconds = 0;
-    return;
-  };
- console.log(seconds)
- let formatted_sec = seconds < 10 ? `0${seconds}` : `${seconds}`;
- document.querySelector("span.time").innerHTML = `$(formatted_sec)`;
-}, 1000)
+function startTime() {
+  let timerInterval = setInterval(() => {
+    time--;
+    timeLeft.innerHTML = time;
+    console.log(time);
+
+    if(time <= 0){
+      clearInterval(timerInterval)
+    }
+    endGame();
+  }, 1000);
 
 
+}
 
 
+function endGame() {
+
+ location.href = "3index.html";
+}
 
 
 
