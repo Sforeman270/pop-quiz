@@ -1,8 +1,3 @@
-let name = sessionStorage.getItem("name");
-// let time = sessionStorage.getItem("time");
-
-document.querySelector(".name").innerHTML = name;
-// document.querySelector(".time").innerHTML = time;
 
 
 window.onload = function() {
@@ -64,7 +59,7 @@ function next() {
   if(question_count === questions.length - 1) {
     sessionStorage.setItem("time", time);
     clearInterval(user_time);
-    location.href = "./3index.html";
+    location.href = "3index.html";
     return;
   };
   
@@ -108,30 +103,30 @@ function toggleActive() {
       for (let i = 0; i < option.length; i++) {
         if (option[i].classList.contains("active")) {
           option[i].classList.remove("active");
-        }
-      }
+        };
+      };
        option[i].classList.add("active");
     };
   };
 };
 
 let dt = new Date(new Date().setTime(0));
+let ctime = dt.getTime
 let time = dt.getTime();
 let seconds = Math.floor((time % (100 * 60 ))/ 1000);
 
 let timex = 0;
-setInterval(function() {
+let user_time = setInterval(function() {
   if(seconds <59) {
     seconds--;
-  }
- time--;
+  } else {
+    seconds = 0;
+    return;
+  };
  console.log(seconds)
- document.querySelector(".time").innerHTML = `$(seconds)`;
+ let formatted_sec = seconds < 10 ? `0${seconds}` : `${seconds}`;
+ document.querySelector("span.time").innerHTML = `$(formatted_sec)`;
 }, 1000)
-
- 
-
-
 
 
 
