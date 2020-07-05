@@ -1,12 +1,7 @@
 
 
-window.onload = function() {
-  
-  show(question_count);
   
 
-  
-};
 
 let time = 60;
 
@@ -50,11 +45,11 @@ function submitForm(event) {
   let name = document.forms["welcome_form"]["name"].value;
 
   localStorage.setItem("name", name);
-  startTime();
+
   location.href = "./2index.html";
 
 
-  
+  startTime();
 };
 
 
@@ -104,7 +99,7 @@ function show(count) {
   <li class="option">${d}</li>
 </ul> 
   `;
-  console.log(question);
+  console.log(question)
   toggleActive();
 };
 
@@ -147,7 +142,16 @@ function startTime() {
 function endGame() {
 
  location.href = "3index.html";
+
 }
+
+
+
+window.onload = function() {
+  
+  show(question_count);
+}
+  
 
 
 
