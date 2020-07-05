@@ -1,7 +1,11 @@
 
 
 window.onload = function() {
+  
   show(question_count);
+  
+
+  
 };
 
 let time = 60;
@@ -30,7 +34,7 @@ let questions = [
     id: 4,
     question: "What information does console.dir() display?",
     options: ["a.HTML", "b.console.log", "c.values of a key", "d.the DOM"],
-    answer: "d",
+    answer: "c",
   },
 
   {
@@ -46,11 +50,11 @@ function submitForm(event) {
   let name = document.forms["welcome_form"]["name"].value;
 
   localStorage.setItem("name", name);
-
-  location.href = "./2index.html";
-console.log("im here")
-
   startTime();
+  location.href = "./2index.html";
+
+
+  
 };
 
 
@@ -58,9 +62,10 @@ console.log("im here")
 let question_count = 0;
 let point = 0;
 
+
 function next() {
 
-  let user_answer = document.querySelector("li.option.active").innerHTML;
+  let user_answer = document.querySelector('li.option.active').innerHTML;
 
 
 
@@ -70,7 +75,8 @@ function next() {
   
     
   } else {
-    time -= 15;
+    time -= 10;
+    localStorage.setItem("points", point);
     
   ;
 
@@ -89,10 +95,8 @@ function show(count) {
   let question = document.getElementById("questions");
   let [a, b, c, d] = questions[count].options;
 
-   
-
   question.innerHTML = `
-  <h2>Q${count + 1}. ${questions[count].question}</h2>
+  <h2>Q${count + 1}.${questions[count].question}</h2>
    <ul class="option_group">
   <li class="option">${a}</li>
   <li class="option">${b}</li>
@@ -100,6 +104,7 @@ function show(count) {
   <li class="option">${d}</li>
 </ul> 
   `;
+  console.log(question);
   toggleActive();
 };
 
@@ -123,9 +128,10 @@ function toggleActive() {
 
 
 function startTime() {
+  
   let timerInterval = setInterval(() => {
     time--;
-    timeLeft.innerHTML = time;
+    time.innerHTML = time;
     console.log(time);
 
     if(time <= 0){
@@ -134,7 +140,7 @@ function startTime() {
     endGame();
   }, 1000);
 
-
+  
 }
 
 
