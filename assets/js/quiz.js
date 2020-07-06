@@ -2,8 +2,17 @@
 
   
 
+let question_count = 0;
+let point = 0;
+
 
 let time = 60;
+
+window.onload = function() {
+  show(question_count);
+  startTime();
+  
+}
 
 
 let questions = [
@@ -40,7 +49,10 @@ let questions = [
   }];
 
 
+
+  
 function submitForm(event) {
+  
   event.preventDefault();
   let name = document.forms["welcome_form"]["name"].value;
 
@@ -48,20 +60,16 @@ function submitForm(event) {
 
   location.href = "./2index.html";
 
-
-  startTime();
+  
 };
 
 
 
-let question_count = 0;
-let point = 0;
 
 
 function next() {
 
   let user_answer = document.querySelector('li.option.active').innerHTML;
-
 
 
   if(user_answer === questions[question_count].answer) {
@@ -110,15 +118,22 @@ function toggleActive() {
 
   for (let i = 0; i < option.length; i++) {
     option[i].onclick = function () {
+
       for (let  j=0; j< option.length; j++) {
+
         if (option[i].classList.contains("active")) {
+
           option[j].classList.remove("active");
+
 
         };
       };
+
        option[i].classList.add("active");
     };
+
   };
+
 };
 
 
@@ -126,7 +141,7 @@ function startTime() {
   
   let timerInterval = setInterval(() => {
     time--;
-    time.innerHTML = time;
+    timeLeft.innerHTML = time;
     console.log(time);
 
     if(time <= 0){
@@ -143,15 +158,8 @@ function endGame() {
 
  location.href = "3index.html";
 
-}
+};
 
-
-
-window.onload = function() {
-  
-  show(question_count);
-}
-  
 
 
 
