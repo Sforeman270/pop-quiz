@@ -74,7 +74,7 @@ function next() {
 
   if(user_answer === questions[question_count].answer) {
 
-    point = point + 10;
+    points = point + 10;
   
     
   } else {
@@ -122,7 +122,7 @@ function toggleActive() {
       for (let  j=0; j< option.length; j++) {
 
         if (option[i].classList.contains("active")) {
-
+          endGame();
           option[j].classList.remove("active");
 
 
@@ -147,7 +147,7 @@ function startTime() {
     if(time <= 0){
       clearInterval(timerInterval)
     }
-    endGame();
+    
   }, 1000);
 
   
