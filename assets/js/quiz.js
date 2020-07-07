@@ -1,17 +1,19 @@
 
-
-  
-
 let question_count = 0;
+let points = 0;
 let point = 0;
-
-
 let time = 60;
 
-window.onload = function() {
-  show(question_count);
+
+let user_name = localStorage.setItem("name", name);
+let user_time = localStorage.setItem("time", time);
+let user_points = localStorage.setItem("points", points)
+
+
+window.onload = function () {
+  show(0);
   startTime();
-  
+
 }
 
 
@@ -50,21 +52,25 @@ let questions = [
 
 
 
-  
+
 function submitForm(event) {
-  
+
   event.preventDefault();
   let name = document.forms["welcome_form"]["name"].value;
 
-  localStorage.setItem("name", name);
+  document.querySelector(".name").innerHTML = name;
+
+
 
   location.href = "./2index.html";
 
-  
+
 };
 
 
+function showQuestion() {
 
+}
 
 
 function next() {
@@ -72,25 +78,28 @@ function next() {
   let user_answer = document.querySelector('li.option.active').innerHTML;
 
 
-  if(user_answer === questions[question_count].answer) {
+  if (user_answer === questions[question_count].answer) {
 
     points = point + 10;
-  
-    
+    document.querySelector(".point").innerHTML = point;
+
   } else {
     time -= 10;
     localStorage.setItem("points", point);
-    
-  ;
 
-  if(question_count === questions.length - 1 ) {
-    endGame();
-  };
-  
+    ;
+
+    if (question_count === questions.length - 1) {
+      endGame();
+    };
+
 
   }
-  question_count++;
-  show(question_count);
+  if (question_count < 4) {
+    show(question_count);
+    question_count++;
+  }
+
 
 };
 
@@ -98,7 +107,10 @@ function show(count) {
   let question = document.getElementById("questions");
   let [a, b, c, d] = questions[count].options;
 
-  question.innerHTML = `
+
+
+  if (question !== null) {
+    question.innerHTML = `
   <h2>Q${count + 1}.${questions[count].question}</h2>
    <ul class="option_group">
   <li class="option">${a}</li>
@@ -107,6 +119,7 @@ function show(count) {
   <li class="option">${d}</li>
 </ul> 
   `;
+  };
   console.log(question)
   toggleActive();
 };
@@ -119,7 +132,7 @@ function toggleActive() {
   for (let i = 0; i < option.length; i++) {
     option[i].onclick = function () {
 
-      for (let  j=0; j< option.length; j++) {
+      for (let j = 0; j < option.length; j++) {
 
         if (option[i].classList.contains("active")) {
           endGame();
@@ -129,34 +142,41 @@ function toggleActive() {
         };
       };
 
-       option[i].classList.add("active");
+      option[i].classList.add("active");
     };
 
   };
 
 };
 
-
 function startTime() {
-  
-  let timerInterval = setInterval(() => {
+  let timeLeft = document.getElementById("timeLeft");
+  if(timeLeft === null) {
+    clearInterval(timerInterval);
+    return;
+  }
+  var timerInterval = setInterval(function () {
     time--;
     timeLeft.innerHTML = time;
     console.log(time);
 
-    if(time <= 0){
+    document.querySelector(".time").innerHTML = time;
+
+    if (time <= 0) {
       clearInterval(timerInterval)
+      endGame();
+
     }
-    
+
   }, 1000);
 
-  
+
 }
 
 
 function endGame() {
 
- location.href = "3index.html";
+  location.href = "3index.html";
 
 };
 
