@@ -62,7 +62,7 @@ p {
     color: #fff;
 }
 .quiz {
-    display: grid;
+    /* display: grid; */
     grid-template-rows: 60px auto;
     width: 800px;
     height: 500px;
@@ -70,6 +70,7 @@ p {
     box-shadow: 0 10px 0 10px rgba(21,145,206, .76);
     border-radius: 3px;
     z-index: 1;
+    display: none;
 }
 .quiz_header {
     display: flex;
@@ -159,9 +160,10 @@ p {
 }
 
 .reward {
-    display: block;
+    /* display: block; */
     font-size: 3rem;
     color: #fff;
+    display: none;
     
 } 
 
@@ -178,6 +180,8 @@ p {
     color: #fff;
      box-shadow: rgba(21,145,206, .76);
 }
+
+
     
 
 

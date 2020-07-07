@@ -1,18 +1,22 @@
 
 let question_count = 0;
 let points = 0;
-let point = 0;
+
 let time = 60;
+const quiz = document.querySelector(".quiz");
+const reward = document.querySelector(".reward")
 
-
-let user_name = localStorage.setItem("name", name);
-let user_time = localStorage.setItem("time", time);
-let user_points = localStorage.setItem("points", points)
+const user_name = document.getElementById("username");
+const user_time = localStorage.setItem("time",time);
+const user_points = localStorage.setItem("points",points)
+const saveScoreBtn = document.getElementById("saveScoreBtn");
+const mostRecentScore = localStorage.getItem("mostRecentScore");
+const finalScore = document.getElementById("finalScore");
+finalScore.innerText = mostRecentScore;
 
 
 window.onload = function () {
   show(0);
-  startTime();
 
 }
 
@@ -59,10 +63,15 @@ function submitForm(event) {
   let name = document.forms["welcome_form"]["name"].value;
 
   document.querySelector(".name").innerHTML = name;
+  const welcomeForm = document.querySelector(".welcome_text");
+  welcomeForm.style.display = "none";
+  // show quiz, display grid
+  startTime();
+  quiz.style.display = "grid";
 
+quiz.style.display = "block";
 
-
-  location.href = "./2index.html";
+  // location.href = "./2index.html";
 
 
 };
@@ -80,12 +89,12 @@ function next() {
 
   if (user_answer === questions[question_count].answer) {
 
-    points = point + 10;
-    document.querySelector(".point").innerHTML = point;
+    points = points + 10;
+    document.querySelector(".point").innerHTML = points;
 
   } else {
     time -= 10;
-    localStorage.setItem("points", point);
+    localStorage.setItem("points", points);
 
     ;
 
@@ -151,7 +160,7 @@ function toggleActive() {
 
 function startTime() {
   let timeLeft = document.getElementById("timeLeft");
-  if(timeLeft === null) {
+  if (timeLeft === null) {
     clearInterval(timerInterval);
     return;
   }
@@ -175,11 +184,29 @@ function startTime() {
 
 
 function endGame() {
-
-  location.href = "3index.html";
-
+  
+  quiz.style.display = "none";
+  reward.style.display = "block";
+  
 };
 
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+console.log(highScores);
+
+user_name.addEventListener("keyup", () => {
+  saveScoreBtn.disabled = !user_name.value;
+});
+
+saveHighScore = event => {
+  event.preventDefault();
+};
+
+const score = {
+  score: mostRecentScore,
+  name: user_name.value
+};
+highScores.push(score);
+console.log(highScores);
 
 
 
