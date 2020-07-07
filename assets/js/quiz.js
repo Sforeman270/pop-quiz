@@ -61,6 +61,8 @@ function submitForm(event) {
 
   event.preventDefault();
   let name = document.forms["welcome_form"]["name"].value;
+  username = document.querySelector("#username-input").value;
+  localStorage.setItem("username", username);
 
   document.querySelector(".name").innerHTML = name;
   const welcomeForm = document.querySelector(".welcome_text");
