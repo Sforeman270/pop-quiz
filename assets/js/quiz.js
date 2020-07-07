@@ -1,19 +1,19 @@
-
+timerInterval = setInterval(startTime(), 1000);
 let question_count = 0;
-let points = 0;
+let points = 50;
 
 let time = 60;
 const quiz = document.querySelector(".quiz");
 const reward = document.querySelector(".reward")
 
-const user_name = document.getElementById("username");
+const user_name = document.getElementById("userName", name);
 const user_time = localStorage.setItem("time",time);
 const user_points = localStorage.setItem("points",points)
-const saveScoreBtn = document.getElementById("saveScoreBtn");
+
 const mostRecentScore = localStorage.getItem("mostRecentScore");
 const finalScore = document.getElementById("finalScore");
 finalScore.innerText = mostRecentScore;
-
+const MAX_HIGH_SCORES = 50;
 
 window.onload = function () {
   show(0);
@@ -65,13 +65,13 @@ function submitForm(event) {
   document.querySelector(".name").innerHTML = name;
   const welcomeForm = document.querySelector(".welcome_text");
   welcomeForm.style.display = "none";
-  // show quiz, display grid
+  
   startTime();
   quiz.style.display = "grid";
 
 quiz.style.display = "block";
 
-  // location.href = "./2index.html";
+  
 
 
 };
@@ -100,6 +100,7 @@ function next() {
 
     if (question_count === questions.length - 1) {
       endGame();
+      clearInterval(timerInterval);
     };
 
 
@@ -185,28 +186,37 @@ function startTime() {
 
 function endGame() {
   
-  quiz.style.display = "none";
+ quiz.style.display = "none";
   reward.style.display = "block";
+  localStorage.setItem('time', time);
+  localStorage.setItem('points', points);
+
+
   
 };
 
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 console.log(highScores);
 
-user_name.addEventListener("keyup", () => {
-  saveScoreBtn.disabled = !user_name.value;
-});
+
 
 saveHighScore = event => {
   event.preventDefault();
-};
 
 const score = {
-  score: mostRecentScore,
-  name: user_name.value
+
+  score: Math.floor(Math.random() * 100),
+  name: userName.value
 };
 highScores.push(score);
+
+highScores.sort( (a,b) => b.score - a.score);
+
+highScores.splice(3);
 console.log(highScores);
+};
+
+
 
 
 
